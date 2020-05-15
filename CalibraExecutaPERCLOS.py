@@ -35,7 +35,7 @@ class CalibraExecutaPERCLOS(QThread):
     plotarCalibragem = pyqtSignal(pg.PlotItem)
 
     # Alimentação de dados dos Gr�ficos
-    plotarExecucao = pyqtSignal(pg.PlotItem)
+    variaveisGrafico = pyqtSignal(list)
 
     # Dados para a tela de log
     msgLog = pyqtSignal(str)
@@ -163,8 +163,7 @@ class CalibraExecutaPERCLOS(QThread):
         # contadores para frameSkip e janela de Baixo PERCLOS
         cont, janelaBaixoPERCLOS, contFPS = 0, 0, 0
 
-        # Eixos do gráfico
-        eixoX_graficoDeExecucao, eixoY_graficoDeExecucao, threshold_porcento = [], [], []
+        eixoX_graficoDeExecucao = 0
 
         while True:
             _, frame = cap.read()
@@ -183,20 +182,18 @@ class CalibraExecutaPERCLOS(QThread):
                 # for (x, y) in self.shape:
                 #     cv2.circle(rgbImage, (x, y), 2, (0, 0, 255), -1)
 
-                threshold_porcento.append(self.threshold)
+                threshold_porcento = self.threshold
 
-                eixoY_graficoDeExecucao.append((self.analisePERCLOS.razaoDeAspecto(self.shape) - self.valorMinimo) / (
+                eixoY_graficoDeExecucao = ((self.analisePERCLOS.razaoDeAspecto(self.shape) - self.valorMinimo) / (
                         self.valorMaximo - self.valorMinimo) * 100)
-                eixoX_graficoDeExecucao.append(len(eixoX_graficoDeExecucao) + 1)
+                eixoX_graficoDeExecucao = eixoX_graficoDeExecucao + 1
 
-                grafico = self.plotarGraficoDeExecucao(eixoX_graficoDeExecucao, eixoY_graficoDeExecucao,
-                                                       threshold_porcento)
-
-                self.plotarExecucao.emit(grafico.getPlotItem())
+                self.variaveisGrafico.emit([eixoX_graficoDeExecucao, eixoY_graficoDeExecucao,
+                                            threshold_porcento])
 
                 # Verificar e Alertar
-                if (eixoY_graficoDeExecucao[-1] < self.threshold):
-                    print("PERCLOS: " + str(eixoY_graficoDeExecucao[-1]))
+                if (eixoY_graficoDeExecucao < self.threshold):
+                    print("PERCLOS: " + str(eixoY_graficoDeExecucao))
                     janelaBaixoPERCLOS += 1
                     if (janelaBaixoPERCLOS > 15):
 
@@ -208,7 +205,7 @@ class CalibraExecutaPERCLOS(QThread):
                 else:
                     janelaBaixoPERCLOS = 0
 
-            #MOSTRA IMAGEM NO FRAME DO PROGRAMA
+            # MOSTRA IMAGEM NO FRAME DO PROGRAMA
             # height, width, channel = rgbImage.shape
             # bytesPerLine = 3 * width
             # convertToQtFormat = QImage(rgbImage.data, width, height, bytesPerLine, QImage.Format_RGB888)
@@ -277,10 +274,3 @@ class CalibraExecutaPERCLOS(QThread):
         valorRAdoThreshold = ((self.matrizRA[0].max() - self.matrizRA[0].min()) * (self.threshold / 100)) + \
                              self.matrizRA[0].min()
         self.PThreshold.emit(str(round(valorRAdoThreshold, 3)))
-
-    def plotarGraficoDeExecucao(self, xExecucao, yExcucao, yThreshold):
-
-        grafico.plot(xExecucao, yThreshold, pen=pg.mkPen('r', style=QtCore.Qt.DashLine))
-        grafico.plot(xExecucao, yExcucao, pen=pg.mkPen('b'))
-
-        return grafico
