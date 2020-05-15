@@ -1,6 +1,6 @@
 ## DISPOSITIVO DE SEGURANÇA VEICULAR COM LEITURA DE EXPRESSÃO FACIAL PARA PREVENÇÃO DE ACIDENTES POR SONO AO VOLANTE
 
-Este repositório é a continuação do meu fork do sistema de segurança veicular, com intuito de fazer uma portabilidade do sistema para rodar num sistema embarcado (Raspberry Pi)
+Este repositório é a continuação do meu [fork](https://github.com/Lvieira21/SegurancaVeicular) do [sistema de segurança veicular](https://github.com/almerindoabreu/SegurancaVeicular), com intuito de fazer uma portabilidade do sistema para rodar num sistema embarcado (Raspberry Pi)
 
 
 
