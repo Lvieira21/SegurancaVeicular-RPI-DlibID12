@@ -1,9 +1,7 @@
 ## DISPOSITIVO DE SEGURANÇA VEICULAR COM LEITURA DE EXPRESSÃO FACIAL PARA PREVENÇÃO DE ACIDENTES POR SONO AO VOLANTE
 
-Este repositório é um fork do projeto original de dispositivo de segurança feito por Almerindo Abreu, Raphael Marques e como Orientador, o DSc Irineu Neto.
-Este projeto visa a continuação deste projeto original, tentando tratar as questões de desempenho no Raspberry Pi por meio de tratamento de código e mudança de inteligencia artificial. 
+Este repositório é a continuação do meu fork do sistema de segurança veicular, com intuito de fazer uma portabilidade do sistema para rodar num sistema embarcado (Raspberry Pi)
 
-[Pesquisa Acadêmica - Faculdade Salesiana Maria Auxiliadora](http://www.fsma.edu.br/site/projetos/prototipacao-de-um-sistema-de-seguranca-veicular-para-alertas-contra-o-sono-e-cansaco-via-reconhecimento-de-imagens/)
 
 
 ### Objetivo do Projeto
@@ -22,10 +20,9 @@ Foram utilizadas as seguintes bibliotecas mencionadas na tabela a seguir:
 |----------------|-------------------------------|-----------------------------|
 |PyQt 5.9.2|pip install pyqt5          |[Link](http://pyqt.sourceforge.net/Docs/PyQt5/)            |
 |PyQTGraph 0.10.0          |pip install pyqtgraph            |[Link](http://www.pyqtgraph.org/)            |
-|gTTS 2.1.1|pip install gtts|[Link](http://pyqt.sourceforge.net/Docs/PyQt5/)|
-| PyGame 1.9.6 | pip install pygame | [Link](https://www.pygame.org/docs/)|
+| playsound 1.2.2 | pip install playsound | [Link](https://pypi.org/project/playsound/)|
 | DLIB 19.7.0 | pip install dlib | [Link](http://dlib.net/)|
 | OpenCV 4.2.0 | pip install opencv2 | [Link](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html)|
-| Imutils 0.5.3 | pip install imutils | [Link](https://github.com/jrosebr1/imutils)|
+| imutils 0.5.3 | pip install imutils | [Link](https://github.com/jrosebr1/imutils)|
 | psutil 5.6.7 | pip install psutil | [Link](https://psutil.readthedocs.io/en/latest/)|
 | NumPy 1.18.1 | pip install numpy | [Link](http://www.numpy.org/)|
